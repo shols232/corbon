@@ -11,10 +11,12 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -57,7 +59,7 @@ ROOT_URLCONF = 'corbonmain.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,3 +129,14 @@ STATICFILES_DIRS = [
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL='/zipfile/'
+
+# #SMTP SERVER SETTINGS SENDGRID
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
+
+LOGIN_URL = '/login'
