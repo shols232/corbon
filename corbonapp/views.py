@@ -77,4 +77,7 @@ def activate(request, uidb64, token):
         login(request, user)
         return redirect('home')
     else:
-        return HttpResponse('Activation link is invalid!')
+        return HttpResponse('Confirmation link is invalid!')
+
+def save_users_from_excel(request):
+    pass
