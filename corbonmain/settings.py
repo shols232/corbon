@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corbonapp',
-    'crispy_forms',  
+    'crispy_forms',
+    'storages',
 
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -122,13 +123,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 
 ]
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-MEDIA_URL='/zipfile/'
+# MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+# MEDIA_URL='/zipfile/'
 
 # #SMTP SERVER SETTINGS SENDGRID
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
@@ -140,3 +141,31 @@ EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
 
 LOGIN_URL = '/login'
+
+
+# s3 storage settings
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'corbon2'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.us-east-2.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_REGION_NAME = 'us-east-2'
+
+# AWS_S3_SIGNATURE_VERSION = 's3v4'
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+
+AWS_S3_FILE_OVERWRITE=False
+AWS_DEFAULT_ACL=None
+
+AWS_STATIC_LOCATION = 'static'
+STATICFILES_STORAGE = 'corbonmain.storage_backends.StaticStorage'
+STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_STATIC_LOCATION)
+
+AWS_PUBLIC_MEDIA_LOCATION = 'media/public'
+DEFAULT_FILE_STORAGE = 'corbonmain.storage_backends.PublicMediaStorage'
+
+AWS_PRIVATE_MEDIA_LOCATION = 'media/private'
+PRIVATE_FILE_STORAGE = 'corbonmain.storage_backends.PrivateMediaStorage'

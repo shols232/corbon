@@ -1,9 +1,9 @@
 from django import forms
-from .models import File
+from .models import File, PrivateDocument
 class FileForm(forms.ModelForm):
     """simple upload form."""
 
     class Meta:
 
-        model = File
-        fields = ('name','zip_file')
+        model = PrivateDocument
+        fields = ('name','upload')

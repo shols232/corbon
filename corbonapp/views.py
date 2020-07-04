@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import FileForm
-from .models import File
+from .models import File, PrivateDocument
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -8,6 +8,7 @@ from sendgrid import SendGridAPIClient
 from django.template.loader import get_template
 from sendgrid.helpers.mail import *
 from corbonmain.settings import SENDGRID_API_KEY
+from django.contrib.admin.views.decorators import staff_member_required
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.utils.encoding import force_bytes, force_text
@@ -17,11 +18,12 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 # Create your views here.
 def download_zip(request):
-    files = File.objects.all()
+    files = PrivateDocument.objects.all()
     return render(request, "download.html", {
         "files":files
     })
 
+@staff_member_required
 def upload_zip(request):
     if request.method == "POST":
         form = FileForm(request.POST, request.FILES)

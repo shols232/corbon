@@ -3,9 +3,9 @@
 
 {% for file in files %}
     <h4>{{file.name}}</h4>
-    
     <h4>
-        <a href="{{file.zip_file.url}}" target = "_blank">Download File </a>
+        <a href="{{file.upload.url}}" target = "_blank">Download File </a>
+        <h3>{{ file.upload.size|filesizeformat }}</h3>
         </h4>
 {% endfor %}
     
