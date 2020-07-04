@@ -10,6 +10,11 @@
   
 
     <title>Corbon</title>
+      <style>
+          body {
+            font-family: Candara, sans-serif;
+          }
+      </style>
   </head>
   <body>
       <nav class="navbar navbar-expand-md navbar-dark bg-info mb-3">
@@ -29,11 +34,16 @@
                 <div class="navbar-nav">
                         <a class="nav-item nav-link" href="#">Welcome</a>
                 </div>
+                {% if request.user.is_staff %}
+                <div class="navbar-nav">
+                        <a class="nav-item nav-link" href="{% url 'upload' %}">Upload files</a>
+                </div>
+                {% endif  %}
             </div>
         </div>
     </nav>
-  <main role="main" class="container mb-4"> 
-    <div class="center mb-4">
+  <main role="main" class="container mb-4">
+    <div class="center">
         {% block content%}
 
         {% endblock content %}

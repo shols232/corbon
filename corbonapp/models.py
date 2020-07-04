@@ -1,4 +1,17 @@
 from django.db import models
+from django.conf import settings
+from django.contrib.auth.models import User
+
+from corbonmain.storage_backends import PrivateMediaStorage
+
+
+
+
+class PrivateDocument(models.Model):
+    name = models.CharField(max_length=100)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    upload = models.FileField(storage=PrivateMediaStorage())
+
 
 class File(models.Model):
     name = models.CharField(max_length = 100)
