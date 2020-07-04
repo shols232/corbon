@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from .forms import FileForm
+from .models import File
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -13,6 +15,27 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
+# Create your views here.
+def download_zip(request):
+    files = File.objects.all()
+    return render(request, "download.html", {
+        "files":files
+    })
+
+def upload_zip(request):
+    if request.method == "POST":
+        form = FileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("download")
+    else:
+        form = FileForm()
+    return render(request, "zip_file.html",{
+        'form': form
+    })
+
+
+
 
 def home(request):
     return render(request, 'home.html')
