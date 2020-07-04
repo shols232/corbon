@@ -1,21 +1,30 @@
 {% extends 'base.html'%}
 {% load static%}
 {% block content %}
-<h2>Download Files</h2>
 
-<br>
+<style>
+
+    h2 {
+        text-align:center;
+    }
+</style>
+<h2>Download Files</h2>
+<hr>
+
 <div class = "container" >
-    <div class = "row">
-        <div class="col-md-3">
+    <div class = "column">
+        <div class="row-md-3">
 
 {% for file in files %}
-    <h4>{{file.name}}</h4>
+
+    <h4>{{file.name.upper}}</h4> <br>
     
-        
+        <br><br> <br>
         <a href="{{file.zip_file.url}}" target = "_blank"><button class = "btn btn-primary">Download File</button> </a>
+       
     
         <a href="{{file.id}}/delete"> <button class = "btn btn-danger">Delete</button></a>
-        <br><br>
+         <br> <hr>
        
 {% endfor %}
 </div>
