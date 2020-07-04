@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from .forms import FileForm
 from .models import File
 from django.http import HttpResponse
@@ -33,6 +33,21 @@ def upload_zip(request):
     return render(request, "zip_file.html",{
         'form': form
     })
+
+# delete view
+def delete_zip(request,id):
+    context = {}
+
+    zipfile = get_object_or_404(File, id = id)
+
+    if request.method == "POST":
+        zipfile.delete()
+
+        return redirect("download")
+
+    return render(request, "delete_zip.html")
+
+
 
 
 

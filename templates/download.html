@@ -1,0 +1,13 @@
+<h2>Download File</h2>
+
+
+{% for file in files %}
+    <h4>{{file.name}}</h4>
+    
+    <h4>
+        <a href="{{file.zip_file.url}}" target = "_blank">Download File </a>
+        </h4>
+        
+       <a href="{{file.id}}/delete">delete</a>
+{% endfor %}
+    
