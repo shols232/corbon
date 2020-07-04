@@ -37,7 +37,7 @@ def log_in(request):
             mail = Mail('akinsolaademolatemitope@gmail.com', to_email, mail_subject, content)
             sg.send(mail)
 
-            return HttpResponse('Please confirm your email address to complete the registration')
+            return render(request, 'email_sent.html')
 
     return render(request, 'login.html')
 
