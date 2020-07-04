@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+{% load static%}
+{% block content %}
+<div class="main"> 
+    <form method="POST"> 
+
+        {% csrf_token %} 
+      <h2> Are you sure you want to delete {{object.name}}? </h2> 
+        <button type="submit" class = "btn btn-danger" > Delete Now! </button>
+        <a href="{% url 'download' %}"><button class = "btn btn-primary"> Cancel </button></a> 
+    </form> 
+</div> 
+
+{% endblock content %}
