@@ -36,16 +36,18 @@ def upload_zip(request):
 
 # delete view
 def delete_zip(request,id):
-    context = {}
-
     zipfile = get_object_or_404(File, id = id)
+
+    context = {
+        "object":zipfile
+    }
 
     if request.method == "POST":
         zipfile.delete()
 
         return redirect("download")
 
-    return render(request, "delete_zip.html")
+    return render(request, "delete_zip.html", context)
 
 
 
