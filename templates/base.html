@@ -13,15 +13,40 @@
       <style>
           body {
             font-family: Candara, sans-serif;
-        background-color: #f8f8f8!important;
+        background-color:   #f5dede!important;
 
     
+          }
+          img#logo1{
+            height:120px;
+            width: 150px;
+            margin-left: 30%;
+            
+
+            
+          }
+          img#logo2 {
+            height: 100px;
+            width: 120px;
+            margin-left: 2%;
+            margin-top: 2%;
+          }
+          a {
+            font-weight: bold;
+            
+          }
+     
+            
+            
           }
       </style>
   </head>
   <body>
+    
       <nav class="navbar navbar-expand-md navbar-dark bg-info mb-3">
+        
         <div class="container">
+          
           <h2><a class="navbar-brand mr-4" href="/"><b>Corbon</b></a></h2>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
                     aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,11 +66,13 @@
                 <div class="navbar-nav">
                         <a class="nav-item nav-link" href="{% url 'upload' %}">Upload files</a>
                 </div>
+               
                 {% endif  %}
             </div>
+            
         </div>
     </nav>
-  <main role="main" class="container mb-4">
+  
     <div class="center">
         {% block content%}
 
