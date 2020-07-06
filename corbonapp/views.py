@@ -37,14 +37,16 @@ def upload_zip(request):
     })
 
 # delete view
+@staff_member_required
 def delete_zip(request,id):
-    zipfile = get_object_or_404(File, id = id)
+    zipfile = get_object_or_404(PrivateDocument, id = id)
 
     context = {
         "object":zipfile
     }
 
     if request.method == "POST":
+        zipfile.upload.delete(save=False)
         zipfile.delete()
 
         return redirect("download")

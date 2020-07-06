@@ -10,5 +10,5 @@ path('download/', views.download_zip, name = 'download'),
 path("", views.home, name="home"),
 path('login/', views.log_in, name="login"),
 path('activate/<slug:uidb64>/<slug:token>', views.activate, name='activate'),
-path("download/<id>/delete", views.delete_zip, name = "delete")
+path("download/<int:id>/delete", views.delete_zip, name = "delete")
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
