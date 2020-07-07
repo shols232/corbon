@@ -63,8 +63,8 @@ def logout_view(request):
     return redirect('login')
 
 
+@staff_member_required
 def create_new_users(request):
-
     if request.method == "POST":
         form = CreateUsersForm(request.POST, request.FILES)
         if form.is_valid():
@@ -161,5 +161,3 @@ def activate(request, uidb64, token):
     else:
         return HttpResponse('Confirmation link is invalid!')
 
-def save_users_from_excel(request):
-    pass
