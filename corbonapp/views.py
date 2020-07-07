@@ -71,18 +71,10 @@ def create_new_users(request):
             form.save()
         excel_file = request.FILES.get("file")
         excel_file_name = excel_file.name
-        print(excel_file_name)
-        current_file_path = f'media/excel_file/{excel_file_name}'
 
         if excel_file_name[-3:] == 'xls' or excel_file_name[-4:] == 'xlsx':
-            print('1')
-            print(Files.objects.all())
-            current_file = Files.objects.get(file=f'excel_file/{excel_file}')
             try:
-                print('2')
                 # reading the excel file
-                # current_file = Files.objects.get(file__name=f'excel_file/{excel_file}')
-                print(current_file.file.url)
                 s3 = S3FileSystem(anon=False)
                 key = f'media/public/excel_file/{excel_file}'
                 bucket = 'corbon2'
