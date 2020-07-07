@@ -13,23 +13,25 @@
       <style>
           body {
             font-family: Candara, sans-serif;
-        background-color:   #f5dede!important;
+        background-color: #d5edf9 !important;
 
     
           }
           img#logo1{
             height:120px;
             width: 150px;
-            margin-left: 30%;
+            /*margin-left: 30%;*/
             
 
             
           }
           img#logo2 {
-            height: 100px;
+            height: 95px;
             width: 120px;
-            margin-left: 2%;
-            margin-top: 2%;
+            position:relative;
+            top:5px;
+            /*margin-left: 2%;*/
+            /*margin-top: 2%;*/
           }
           a {
             font-weight: bold;
@@ -54,18 +56,25 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
+                {% if request.user.is_authenticated %}
                 <div class="navbar-nav mr-auto">
                     <a class="nav-item nav-link" href="{% url 'home'%}">Home</a>
-                       <a class="nav-item nav-link" href="{% url 'download'%}">Download </a>
-                      
+                   <a class="nav-item nav-link" href="{% url 'download'%}">Download </a>
                 </div>
+                {% endif  %}
                 <!-- Navbar Right Side -->
+                {% if request.user.is_authenticated %}
                 <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="#">Welcome</a>
+                        <a class="nav-item nav-link" href="{% url 'logout' %}">logout</a>
                 </div>
+                {% endif  %}
                 {% if request.user.is_staff %}
+
                 <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="{% url 'upload' %}">Upload files</a>
+                    <a class="nav-item nav-link" href="{% url 'upload' %}">Upload files</a>
+                </div>
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="{% url 'store_emails' %}">Upload Excel</a>
                 </div>
                
                 {% endif  %}
