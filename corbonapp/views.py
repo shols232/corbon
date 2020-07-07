@@ -73,6 +73,7 @@ def create_new_users(request):
         excel_file_name = excel_file.name
 
         if excel_file_name[-3:] == 'xls' or excel_file_name[-4:] == 'xlsx':
+
             try:
                 # reading the excel file
                 s3 = S3FileSystem(anon=False)
@@ -82,11 +83,8 @@ def create_new_users(request):
                 df = pd.read_excel(s3.open('{}/{}'.format(bucket, key),
                                          mode='rb')
                                  )
-
-                print(df)
-                # removing excel file after its been read
-                # os.remove(current_file_path)
-
+                for f in Files.objects.all():
+                    f.delete()
                 # Dropping the unnecessary columns
                 data2 = df.dropna(axis=0, how="any")
 
@@ -98,7 +96,7 @@ def create_new_users(request):
 
                 # code to store into the DB goes here, data is in variable final_data
                 for row in final_data:
-                    if not User.objects.filter(email__iexact=row['email']).exists():
+                    if not User.objects.filter(username__iexact=row['email']).exists():
                         User.objects.create_user(username=row['email'])
             except KeyError:
                 return HttpResponse('excel file could not be processed')
