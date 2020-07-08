@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+{% load static%}
+{% block content %}
+
+<style>
+   
+    h2{
+        text-align: center;
+    }
+</style>
+<h2>
+Upload Files
+</h2>
+<div class = "container" >
+    <div class = "row">
+        <div class="col-md-3">
+
+        
+
+    
+<form action="", method="POST" enctype="multipart/form-data">
+    {% csrf_token %} 
+    {{form.as_p}} <br>
+    <button type= "submit" class = "btn btn-secondary">Upload File</button>
+</form>
+</div>
+</div>
+</div>
+{% endblock content %}
