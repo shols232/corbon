@@ -4,7 +4,11 @@ from django.contrib.auth.models import User
 
 from corbonmain.storage_backends import PrivateMediaStorage
 
+class Files(models.Model):
+    file = models.FileField(upload_to='excel_file/', null=True)
 
+    def __str__(self):
+        return self.file.name
 
 
 class PrivateDocument(models.Model):
