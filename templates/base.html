@@ -14,24 +14,28 @@
             font-family: Candara, sans-serif;
         background-color:   cyan!important;
 
+
     
           }
           img#logo1{
+
             height:50px;
             width: 80px;
             margin-left: 30%;
+
             
             
 
             
           }
           img#logo2 {
+
             height: 30px;
             width: 80px;
             margin-left: 30%;
             margin-top: 10%;
            
-           
+
           }
           a {
             font-weight: bold;
@@ -55,20 +59,30 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
+                {% if request.user.is_authenticated %}
                 <div class="navbar-nav mr-auto">
+
                   <a  href="/"> <img id="logo1" src="https://www.corbon.gov.ng/public/assets/images/logos/logo.png" alt="logo"></a><img id="logo2" src="https://scontent.fabv2-1.fna.fbcdn.net/v/t1.0-9/48427094_294879184491177_6806970169940770816_n.png?_nc_cat=101&_nc_sid=85a577&_nc_eui2=AeF6j1uUw3qPgEUAx6JXNOfTGwN_JHwapQwbA38kfBqlDCflmouBPZiVrbBLt64eFeTHmW01u64phCRbyDgIk36E&_nc_ohc=LSsEI_lyOW4AX9AfbCS&_nc_ht=scontent.fabv2-1.fna&oh=b8b8dc499b8612c184d40573a6b7acfe&oe=5F28B68C" alt="logo">
 
                     {% if request.user.is_authenticated %}
                        <a class="nav-item nav-link" href="{% url 'download'%}">Download </a>
                        {% endif  %}
+
                 </div>
+                {% endif  %}
                 <!-- Navbar Right Side -->
+                {% if request.user.is_authenticated %}
                 <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="#">Welcome</a>
+                        <a class="nav-item nav-link" href="{% url 'logout' %}">logout</a>
                 </div>
+                {% endif  %}
                 {% if request.user.is_staff %}
+
                 <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="{% url 'upload' %}">Upload files</a>
+                    <a class="nav-item nav-link" href="{% url 'upload' %}">Upload files</a>
+                </div>
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="{% url 'store_emails' %}">Upload Excel</a>
                 </div>
                
                 {% endif  %}

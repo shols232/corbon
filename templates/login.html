@@ -1,21 +1,25 @@
 {% extends 'base.html'%}
 {% load static%}
 {% block content %}
-    <div>
-            {% if error%}
-                <div class="alert alert-danger" role="alert">
-                  {{error}}
-                </div>
-            {% endif %}
-    <br>
-          <form method = "POST">
-              {% csrf_token %}
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name = "email" /> <br>
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div>
+                    {% if error%}
+                        <div class="alert alert-danger" role="alert">
+                          {{error}}
+                        </div>
+                    {% endif %}
+            <br>
+                  <form method = "POST">
+                      {% csrf_token %}
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name = "email" /> <br>
+                    </div>
+                    <button type="submit" class="btn btn-primary" >Send mail</button>
+                  </form>
             </div>
-            <button type="submit" class="btn btn-primary" >Send mail</button>
-          </form>
+        </div>
     </div>
 
 {% endblock content %}
