@@ -9,10 +9,16 @@
         font-weight: 400;
         
     }
+    .carousel-indicators .indi {
+    background-color: rgb(10, 202, 52);
+}
 
     .slide{
         height: 500px!important;
-        width: 700px;
+        width: 400px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto ;
     }
     .slider{
         margin-top: 50px;
@@ -23,18 +29,41 @@
     h3{
         text-align: center;
     }
+   
+ 
+  
+    .carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  background-size: 100%, 100%;
+  background-image: none;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  color:  rgb(10, 202, 52);
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  color:  rgb(10, 202, 52);
+}
 </style>
 
 <div class="container slider">
 
 
     <div class="row" >
-        <div class="col-sm-8">
+        <div class="col-sm-8 mainc">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active indi"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1" class="indi"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2" class="indi"></li>
                 </ol>
                 <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -48,24 +77,23 @@
                     <img class="d-block w-100" src="https://files.slack.com/files-pri/T0148TPPJRW-F017APF6YPP/img-20200705-wa0002.jpg" alt="Third slide">
                 </div>-->
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <a class="carousel-control-prev prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
+                <a class="carousel-control-next next " href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon " aria-hidden="true"></span>
+                <span class="sr-only icon">Next</span>
                 </a>
             </div>
             
-                        
-
+     
                 
 
                 
 
         </div> 
-        <div class="col-sm-4">
+        <div class="col-sm-4 mainu">
             {% if error%}
             <div class="alert alert-danger" role="alert">
               {{error}}
@@ -79,14 +107,17 @@
                 <label for="email" id="emaillabel">Email</label>
                 
                 <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name = "email" /> <br>
-              </div>
+              
               <button type="submit" class="btn btn-primary" >Send mail</button>
+            </div>
             </form>
+       
      
       </div>
 
     </div>
     
 </div><!-- slider-->
+
 
 {% endblock content %}
