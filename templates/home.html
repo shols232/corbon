@@ -115,13 +115,7 @@
             </div>
             {% endif %}
 
-            {% if sent %}
-                <h3>Please check you email for a verification link. Thank you.</h3>
-            {% else %}
-                <h3>Please put in the email used during registration for the seminar.</h3>
-                <h4 class="text-center">contact 08035474738 for more details</h4>
-            {% endif %}
-              {% if activated %}
+            {% if activated %}
 
               <div>
                 {% for file in files %}
@@ -138,12 +132,10 @@
             </div>
 
               {% else %}
-            <form method = "POST">
+            <form method = "POST" action='{% url login %}'>
                 {% csrf_token %}
               <div class="form-group">
-                <h3>Login</h3>
-                <label for="email" id="emaillabel">Email</label>
-                
+                <h3>Enter email here</h3>
                 <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name = "email" /> <br>
               
               <button type="submit" class="btn btn-primary" >Send mail</button>
