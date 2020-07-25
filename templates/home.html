@@ -20,9 +20,10 @@
         display: block;
         margin-left: auto;
         margin-right: auto ;
+      
     }
     .slider{
-        margin-top: 50px;
+        margin-top: 80px;
     }
     #emaillabel{
         font-weight: bolder;
@@ -30,7 +31,16 @@
     h3{
         text-align: center;
     }
-   
+   .mainc{
+       background-color: whitesmoke;
+       opacity: 0.9;
+   }
+   footer{
+       position: fixed;
+       width: 100%;
+       bottom: 0;
+       background-color: #1366b9;
+   }
  
   
     .carousel-control-prev-icon,
@@ -53,6 +63,9 @@
   font-size: 55px;
   color:  rgb(10, 202, 52);
 }
+
+
+
 </style>
 
 
@@ -60,7 +73,7 @@
 
 
     <div class="row" >
-        <div class="col-sm-8 mainc">
+        <div class="col-sm-7 mainc">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active indi"></li>
@@ -69,7 +82,7 @@
                 </ol>
                 <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img   class="d-block w-100 slide" src="https://files.slack.com/files-pri/T0148TPPJRW-F017APF6YPP/img-20200705-wa0002.jpg" alt="First slide">
+                    <img   class="d-block w-100 slide" src="https://drive.google.com/u/0/uc?id=1sZpPIXNd5sj6X57laRsjqTdBlzjbDAhJ&export=download" alt="First slide">
                 </div>
                 <!--
                 <div class="carousel-item">
@@ -95,7 +108,7 @@
                 
 
         </div> 
-        <div class="col-sm-4 mainu">
+        <div class="col-sm-5 mainu">
             {% if error%}
             <div class="alert alert-danger" role="alert">
               {{error}}
