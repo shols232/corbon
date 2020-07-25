@@ -109,9 +109,32 @@ def create_new_users(request):
     })
 
 
-@login_required
+
 def home(request):
-    return render(request, 'home.html')
+    if request.method == 'POST':
+        sg = SendGridAPIClient(SENDGRID_API_KEY)
+        email = request.POST.get('email')
+        if User.objects.filter(username__iexact=email).count() == 1:
+            user = User.objects.get(username=email)
+            current_site = get_current_site(request)
+            mail_subject = 'Email Confirmation'
+            to_email = email
+            print(to_email)
+            message = get_template('email_verification_template.html').render({
+                        'user': user,
+                        'domain': current_site.domain,
+                        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                        'token': account_activation_token.make_token(user),
+                    })
+            content = Content("text/html", message)
+            mail = Mail('akinsolaademolatemitope@gmail.com', to_email, mail_subject, content)
+            sg.send(mail)
+
+            return render(request, 'home.html', {'sent':True})
+        else:
+            return render(request, 'home.html', {'sent': False})
+    else:
+        return render(request, 'home.html')
 
 def log_in(request):
     if request.method == 'POST':
@@ -147,7 +170,8 @@ def activate(request, uidb64, token):
         user = None
     if user is not None and account_activation_token.check_token(user, token):
         login(request, user)
-        return redirect('home')
+        files = PrivateDocument.objects.all()
+        return render(request, 'home.html', {'activated':True, "files":files})
     else:
         return HttpResponse('Confirmation link is invalid!')
 

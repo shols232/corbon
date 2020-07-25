@@ -100,8 +100,31 @@
             <div class="alert alert-danger" role="alert">
               {{error}}
             </div>
-        {% endif %}
-              
+            {% endif %}
+
+            {% if sent %}
+                <h3>Please check you email for a verification link. Thank you.</h3>
+            {% else %}
+                <h3>Please put in the email used during registration for the seminar.</h3>
+                <h4 class="text-center">contact 08035474738 for more details</h4>
+            {% endif %}
+              {% if activated %}
+
+              <div>
+                {% for file in files %}
+    
+                    <h4>{{file.name.upper}}</h4> <br><br>
+                        <a href="{{file.upload.url}}" target = "_blank"><button class = "btn btn-primary">Download File</button> </a>
+    
+                        {% if request.user.is_staff %}
+                        <a href="{% url 'delete' file.id %}"> <button class = "btn btn-danger">Delete</button></a>
+                        {% endif %}
+                         <br> <hr>
+    
+                {% endfor %}
+            </div>
+
+              {% else %}
             <form method = "POST">
                 {% csrf_token %}
               <div class="form-group">
@@ -113,7 +136,7 @@
               <button type="submit" class="btn btn-primary" >Send mail</button>
             </div>
             </form>
-       
+            {% endif %}
      
       </div>
 
