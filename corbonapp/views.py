@@ -110,8 +110,8 @@ def create_new_users(request):
 
 
 
-def home(request):
-    return render(request, 'home.html')
+# def home(request):
+#     return render(request, 'home.html')
 
 def log_in(request):
     if request.method == 'POST':
@@ -136,7 +136,7 @@ def log_in(request):
             return render(request, 'email_sent.html', {'sent':True})
         return render(request, 'email_sent.html', {'sent': False})
 
-    return render(request, 'login.html')
+    return render(request, 'home.html')
 
 def activate(request, uidb64, token):
     user = User()

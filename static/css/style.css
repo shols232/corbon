@@ -1,0 +1,100 @@
+body {
+    font-family: Candara, sans-serif;
+background-color:   #fff;
+background-image: url("https://static.vecteezy.com/system/resources/previews/000/655/246/non_2x/vector-illustration-of-urban-landscape-with-city-skyline-and-building-isolated-on-white-background.jpg")!important;
+background-repeat: no-repeat; /* Do not repeat the image */
+background-size:cover;
+
+
+
+  }
+h3{
+    text-decoration: none;
+  
+    color:#31455a;
+    font-weight: 400;
+
+    
+}
+.carousel-indicators .indi {
+background-color: rgb(10, 202, 52);
+}
+
+.slide{
+    height: 500px!important;
+    width: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto ;
+  
+}
+.slider{
+    margin-top: 80px;
+}
+#emaillabel{
+    font-weight: bolder;
+}
+h3{
+    text-align: center;
+}   
+
+
+#logo1{
+    height:50px;
+    width: 80px;
+    margin-left: 30%;    
+  }
+#logo2 {
+
+    height: 30px;
+    width: 80px;
+    margin-left: 30%;
+    margin-top: 10%;
+   
+
+  }
+ a {
+    font-weight: bold;
+    color: blue;
+  }
+.mainc{
+   background-color: whitesmoke;
+   opacity: 0.9;
+
+
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+height: 100px;
+width: 100px;
+background-size: 100%, 100%;
+background-image: none;
+}
+
+.carousel-control-next-icon:after
+{
+content: '>';
+font-size: 55px;
+color:  rgb(10, 202, 52);
+}
+
+.carousel-control-prev-icon:after {
+content: '<';
+font-size: 55px;
+color:  rgb(10, 202, 52);
+}
+
+
+
+ 
+#navi{
+    background-color:#1366b9!important;
+  }
+}
+footer{
+position: fixed;
+width: 100%;
+bottom: 0;
+height: 30px;
+background-color: #1366b9;
+}

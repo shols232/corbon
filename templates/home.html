@@ -1,79 +1,16 @@
 {% extends 'base.html'%}
-{% load static%}
+{% load static %}
 {% block content %}
 <style>
-    h3{
-        text-decoration: none;
-      
-        color:#31455a;
-        font-weight: 400;
-
-        
+    #carouselExampleIndicators{
+        width: 700px;
     }
-    .carousel-indicators .indi {
-    background-color: rgb(10, 202, 52);
-}
-
-    .slide{
-        height: 500px!important;
-        width: 400px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto ;
-      
-    }
-    .slider{
-        margin-top: 80px;
-    }
-    #emaillabel{
-        font-weight: bolder;
-    }
-    h3{
-        text-align: center;
-    }
-   .mainc{
-       background-color: whitesmoke;
-       opacity: 0.9;
-   }
-   footer{
-       position: fixed;
-       width: 100%;
-       bottom: 0;
-       background-color: #1366b9;
-   }
- 
-  
-    .carousel-control-prev-icon,
-.carousel-control-next-icon {
-  height: 100px;
-  width: 100px;
-  background-size: 100%, 100%;
-  background-image: none;
-}
-
-.carousel-control-next-icon:after
-{
-  content: '>';
-  font-size: 55px;
-  color:  rgb(10, 202, 52);
-}
-
-.carousel-control-prev-icon:after {
-  content: '<';
-  font-size: 55px;
-  color:  rgb(10, 202, 52);
-}
-
-
-
 </style>
-
-
 <div class="container slider">
 
 
     <div class="row" >
-        <div class="col-sm-7 mainc">
+        <div class="col-sm-8 mainc">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active indi"></li>
@@ -108,7 +45,7 @@
                 
 
         </div> 
-        <div class="col-sm-5 mainu">
+        <div class="col-sm-4 mainu">
             {% if error%}
             <div class="alert alert-danger" role="alert">
               {{error}}
@@ -132,7 +69,7 @@
             </div>
 
               {% else %}
-            <form method = "POST" action='{% url login %}'>
+            <form method = "POST">
                 {% csrf_token %}
               <div class="form-group">
                 <h3>Enter email here</h3>
