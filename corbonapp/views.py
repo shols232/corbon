@@ -110,8 +110,8 @@ def create_new_users(request):
 
 
 
-def home(request):
-    return render(request, 'home.html')
+# def home(request):
+#     return render(request, 'home.html')
 
 def log_in(request):
     if request.method == 'POST':
@@ -136,7 +136,7 @@ def log_in(request):
             return render(request, 'email_sent.html', {'sent':True})
         return render(request, 'email_sent.html', {'sent': False})
 
-    return render(request, 'login.html')
+    return render(request, 'home.html')
 
 def activate(request, uidb64, token):
     user = User()
@@ -147,7 +147,8 @@ def activate(request, uidb64, token):
         user = None
     if user is not None and account_activation_token.check_token(user, token):
         login(request, user)
-        return redirect('home')
+        files = PrivateDocument.objects.all()
+        return render(request, 'home.html', {'activated':True, "files":files})
     else:
         return HttpResponse('Confirmation link is invalid!')
 

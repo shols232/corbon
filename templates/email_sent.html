@@ -1,9 +1,12 @@
 {% extends 'base.html'%}
-{% load static%}
+{% load static %}
 {% block content %}
+<style>
 
+</style>
+<div class="container">
     <div class="row">
-        <div class="col-md-8 mx-auto">
+        <div class="col-md-8 mb-4 mx-auto">
             <div>
                 {% if sent %}
                     <h3>Please check you email for a verification link. Thank you.</h3>
@@ -11,8 +14,11 @@
                     <h3>Please put in the email used during registration for the seminar.</h3>
                     <h4 class="text-center">contact 08035474738 for more details</h4>
                 {% endif %}
+                <br>
+                <a href="{% url 'home' %}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
             </div>
         </div>
     </div>
+</div>
 
 {% endblock content %}

@@ -1,79 +1,16 @@
 {% extends 'base.html'%}
-{% load static%}
+{% load static %}
 {% block content %}
 <style>
-    h3{
-        text-decoration: none;
-      
-        color:#31455a;
-        font-weight: 400;
-
-        
+    #carouselExampleIndicators{
+        width: 700px;
     }
-    .carousel-indicators .indi {
-    background-color: rgb(10, 202, 52);
-}
-
-    .slide{
-        height: 500px!important;
-        width: 400px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto ;
-      
-    }
-    .slider{
-        margin-top: 80px;
-    }
-    #emaillabel{
-        font-weight: bolder;
-    }
-    h3{
-        text-align: center;
-    }
-   .mainc{
-       background-color: whitesmoke;
-       opacity: 0.9;
-   }
-   footer{
-       position: fixed;
-       width: 100%;
-       bottom: 0;
-       background-color: #1366b9;
-   }
- 
-  
-    .carousel-control-prev-icon,
-.carousel-control-next-icon {
-  height: 100px;
-  width: 100px;
-  background-size: 100%, 100%;
-  background-image: none;
-}
-
-.carousel-control-next-icon:after
-{
-  content: '>';
-  font-size: 55px;
-  color:  rgb(10, 202, 52);
-}
-
-.carousel-control-prev-icon:after {
-  content: '<';
-  font-size: 55px;
-  color:  rgb(10, 202, 52);
-}
-
-
-
 </style>
-
-
 <div class="container slider">
 
 
     <div class="row" >
-        <div class="col-sm-7 mainc">
+        <div class="col-sm-8 mainc">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active indi"></li>
@@ -108,25 +45,40 @@
                 
 
         </div> 
-        <div class="col-sm-5 mainu">
+        <div class="col-sm-4 mainu">
             {% if error%}
             <div class="alert alert-danger" role="alert">
               {{error}}
             </div>
-        {% endif %}
-              
+            {% endif %}
+
+            {% if activated %}
+
+              <div>
+                {% for file in files %}
+    
+                    <h4>{{file.name.upper}}</h4> <br><br>
+                        <a href="{{file.upload.url}}" target = "_blank"><button class = "btn btn-primary">Download File</button> </a>
+    
+                        {% if request.user.is_staff %}
+                        <a href="{% url 'delete' file.id %}"> <button class = "btn btn-danger">Delete</button></a>
+                        {% endif %}
+                         <br> <hr>
+    
+                {% endfor %}
+            </div>
+
+              {% else %}
             <form method = "POST">
                 {% csrf_token %}
               <div class="form-group">
-                <h3>Login</h3>
-                <label for="email" id="emaillabel">Email</label>
-                
+                <h3>Enter email here</h3>
                 <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name = "email" /> <br>
               
               <button type="submit" class="btn btn-primary" >Send mail</button>
             </div>
             </form>
-       
+            {% endif %}
      
       </div>
 

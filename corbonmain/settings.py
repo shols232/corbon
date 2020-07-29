@@ -123,11 +123,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 
 ]
+
+
 # MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 # MEDIA_URL='/zipfile/'
 
@@ -161,11 +164,13 @@ AWS_S3_FILE_OVERWRITE=False
 AWS_DEFAULT_ACL=None
 
 AWS_STATIC_LOCATION = 'static'
-STATICFILES_STORAGE = 'corbonmain.storage_backends.StaticStorage'
-STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_STATIC_LOCATION)
+# STATICFILES_STORAGE = 'corbonmain.storage_backends.StaticStorage'
+# STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_STATIC_LOCATION)
 
 AWS_PUBLIC_MEDIA_LOCATION = 'media/public'
 DEFAULT_FILE_STORAGE = 'corbonmain.storage_backends.PublicMediaStorage'
 
 AWS_PRIVATE_MEDIA_LOCATION = 'media/private'
 PRIVATE_FILE_STORAGE = 'corbonmain.storage_backends.PrivateMediaStorage'
+
+
